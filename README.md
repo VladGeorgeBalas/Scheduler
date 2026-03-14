@@ -14,10 +14,12 @@ Functionalitati de baza:
 - [ ] Creere log de functionare
 - [x] Functionalitati Git
 - [ ] Lansare thread-uri si temporizare
+- [ ] Rezolvarea erorilor de internet si Git in mod automat
 ---
 Functionalitati QOL:
 - [ ] CLI
 - [ ] Completarea task-urilor neefectuate pe baza log-ului
+- [ ] Inlocuirea executie git din terminal cu GitLib2
 - [ ] Rezolvare mai inteligenta a erorilor de internet
 - [ ] Comasarea inteligenta a modificarilor pentru eficientizarea functionarii
 - [ ] Modularizarea functionalitatii de scheduling pentru a permite refolosirea in alte proiecte

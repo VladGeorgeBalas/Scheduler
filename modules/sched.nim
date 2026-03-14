@@ -1,22 +1,11 @@
-import std/locks
 import csv_read
 import yml_read
 import std/times
 import std/posix
 import std/osproc
 
-proc retryUntil(command: string, atempts: int, period: int, givenRes: int = 1) : bool =
-  var res = givenRes
-
-  if res != 0:
-    for i in 1..atempts:
-      discard sleep(cint(period))
-      res = execCmd(command)
-      if res == 0:
-        break;
-
-  return bool(res)
-
+# Versiunea curenta nu are error-handling
+# Si nici locks pe git, desi trebuie
 proc scheduledThread*(toDo : ScheduleEntry, buffer : cint, ymlPath : string) =
   var duration : cint = 0
   var rem : cint = 10
@@ -34,7 +23,6 @@ proc scheduledThread*(toDo : ScheduleEntry, buffer : cint, ymlPath : string) =
   # 2) pull
   var res = execCmd("git pull") # `git pull` returneaza 1 pentru orice altceva decat "up to date"
   res = execCmd("git pull")
-  discard retryUntil(command = "git pull", atempts = 5, period = 300, givenRes = res)
 
   # 3) modify
   discard applyAction(yamlData, toDo.file, toDo.action)

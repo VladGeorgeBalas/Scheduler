@@ -45,15 +45,3 @@ while actionIndex <= csvData.len - 1:
       # correct for time loss
       duration = rem
       rem = 0
-
-  # Git pull
-  echo "Debug: Git Pull"
-
-  # execute action
-  # discard applyAction(ymlData, csvData[tmp].file, csvData[tmp].action)
-
-  # Git commit
-  echo "Debug: Git Commit"
-
-  # Git push
-  echo "Debug: Git "

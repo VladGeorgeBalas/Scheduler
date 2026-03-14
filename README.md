@@ -9,7 +9,7 @@ Modificarile sunt aduse prin modificarea si impingerea modificarilor in repo. Te
 # ToDo
 - [x] Configuratie prin CSV
 - [x] Modificare corecta a fisierului .yml
-- [] Creere log de functionare
+- [ ] Creere log de functionare
 - [x] Functionalitati Git
-- [] Lansare thread-uri si temporizare
-- []
+- [ ] Lansare thread-uri si temporizare
+- [ ]

@@ -12,8 +12,8 @@ Functionalitati de baza:
 - [x] Configuratie prin CSV
 - [x] Modificare corecta a fisierului .yml
 - [ ] Creere log de functionare
-- [x] Functionalitati Git
-- [ ] Lansare thread-uri si temporizare
+- [ ] Functionalitati Git
+- [x] Lansare thread-uri si temporizare
 - [ ] Rezolvarea erorilor de internet si Git in mod automat
 ---
 Functionalitati QOL:

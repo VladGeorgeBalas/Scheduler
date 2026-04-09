@@ -1,47 +1,57 @@
 import modules/csv_read
 import modules/yml_read
+import modules/sched
 import strutils
 import std/posix
 import std/algorithm
 import std/times
 
 # Setup and read arguments
-let csvPath : string = "schedule.nim"
-let ymlPath : string = "myst.yml"
+# TODO: citire argumente din cli si argv
+let csvPath : string = "./testFiles/schedule.csv"
+let ymlPath : string = "testFiles/myst.yml"
 
 # Gen env data ( csv and yml )
 var csvData : seq[ScheduleEntry] = readScheduleCsv(csvPath)
+# TODO: sa ai macar un log de citit :))
 # TODO: citeste log-ul
 
 # Sortam CSV-ul dupa timp
-csvData.sort(cmp)
-echo csvData
+csvData.sort(cmp)               # sort descrescator dupa timp
+echo "Debug : \n", csvData, "\n"
 
-# Complete unapplied actions
+# Completare actiuni nerealizate
 # TODO: toate actiunile care sunt in trecut si nefacute in log trebuie
 # completate imediat, inainte de a lucra la restul
 
-let timeBuffer = 10 # in seconds
-var actionIndex = 0
-while actionIndex <= csvData.len - 1:
-  # find first action to be performable
-  var past : bool = true
-  var tmp = actionIndex
-  while tmp <= csvData.len - 1:
-    if past == true and now() < csvData[tmp].dateTime:
-      past = false
-      break
+let timeBuffer : cint = 10 # in secunde
+var actionIndex = -1
 
-  # calculate the period to be waited - buffer
-  var duration : cint = cint((now() - csvData[tmp].dateTime).inSeconds() - timeBuffer)
+# prima actiune care poate fi facuta
+while actionIndex + 1 <= csvData.len - 1 and now() < csvData[actionIndex + 1].dateTime:
+  actionIndex = actionIndex + 1
 
-  # wait with loss correction
-  var rem : cint = 0
-  while true:
-    rem = sleep(duration)
-    if rem == 0:
-      break
-    else:
-      # correct for time loss
-      duration = rem
-      rem = 0
+echo "Debug : Action Index = ", actionIndex, "\n"
+
+# actionIndex ar fi cu 1 dupa index-ul ultimei actiuni
+# deci verificam daca e ceva de facut sa nu avem erori la init
+if actionIndex >= 0:
+  actionIndex = actionIndex
+  var threads = newSeq[Thread[thrData]](actionIndex + 1)
+  var data = newSeq[thrData](actionIndex + 1)
+
+  echo "Debug : Action Index = ", actionIndex, "\n"
+
+  for i in 0..actionIndex:
+    echo "Debug : Adaugare task #", i
+    data[i].toDo = csvData[i];
+    data[i].ymlPath = ymlPath;
+    data[i].buffer = timeBuffer;
+
+  for i in 0..actionIndex:
+    createThread(threads[i], scheduledThread, data[i]);
+
+  echo "Debug : join treads"
+
+  for i in 0..actionIndex:
+    joinThread(threads[i])

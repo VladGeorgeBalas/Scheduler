@@ -17,7 +17,7 @@ type ScheduleEntry* = object
    action*: Action
 
 proc cmp*(x, y: ScheduleEntry) : int =
-  cmp(x.dateTime, y.dateTime)
+  -cmp(x.dateTime, y.dateTime)
 
 proc toString(source: Action) : string =
   case source:
@@ -51,7 +51,7 @@ proc parseActionField(srcCsvParser : var CsvParser) : Action =
 # Citire CSV cu orar
 proc readScheduleCsv*(path: string) : seq[ScheduleEntry]=
   var myCsvParser : CsvParser
-  myCsvParser.open("schedule.csv")
+  myCsvParser.open(path)
   myCsvParser.readHeaderRow()
 
   # TODO: schimba formatul csv-ului in dd-MM-yyyy/hh:mm, action, file

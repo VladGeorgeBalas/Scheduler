@@ -1,7 +1,7 @@
 proc readYaml*(filePath : string):seq[string] =
   var file : File
 
-  # adauga error handling
+  # TODO adauga error handling
   discard open(file, filePath, fmRead)
 
   var ymlLines : seq[string]
@@ -9,6 +9,7 @@ proc readYaml*(filePath : string):seq[string] =
     ymlLines.add(i)
 
   file.close()
+  # DEBUG
   # echo ymlLines
   return ymlLines
 

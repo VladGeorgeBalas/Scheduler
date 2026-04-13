@@ -13,17 +13,17 @@ Functionalitati de baza:
 - [x] Modificare corecta a fisierului .yml
 - [ ] Creere log de functionare
 - [ ] Functionalitati Git
+  - [ ] Inlocuirea executie git cu 'execCmd' cu GitLib2
 - [x] Lansare thread-uri si temporizare
 - [ ] Rezolvarea erorilor de internet si Git in mod automat
 ---
 Functionalitati QOL:
 - [ ] CLI
-- [ ] Completarea task-urilor neefectuate pe baza log-ului
-- [ ] Inlocuirea executie git din terminal cu GitLib2
+- [ ] Creere log
+  - [ ] Completarea task-urilor neefectuate pe baza log-ului
 - [ ] Rezolvare mai inteligenta a erorilor de internet
 - [ ] Comasarea inteligenta a modificarilor pentru eficientizarea functionarii
 - [ ] Modularizarea functionalitatii de scheduling pentru a permite refolosirea in alte proiecte
-
 ----
 De viitor:
 - [ ] Parsare avansata a fisierelor .yml

@@ -1,6 +1,3 @@
-# Scheduler pentru publicarea modificarilor pe site Jupyter
-# Autor: Balas Vlad-George
-
 import std/posix
 import std/parsecsv
 import std/times

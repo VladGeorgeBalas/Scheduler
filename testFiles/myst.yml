@@ -25,7 +25,7 @@ project:
           hidden: false
         - file: Laboratoare/laborator2.md
           hidden: false
-          exclude: false
+          exclude: true
         - file: Laboratoare/laborator3.md
           hidden: false
           exclude: false

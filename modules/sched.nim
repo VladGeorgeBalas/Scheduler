@@ -11,7 +11,7 @@ type thrData* = object
 
 # Versiunea curenta nu are error-handling
 # Si nici locks pe git, desi trebuie
-proc scheduledThread*(schedData : thrData){.thread.} =
+proc threadFunction*(schedData : thrData){.thread.} =
   var toDo : ScheduleEntry = schedData.toDo
   var buffer : cint = schedData.buffer
   var ymlPath : string = schedData.ymlPath

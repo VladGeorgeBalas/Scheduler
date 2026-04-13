@@ -49,7 +49,7 @@ if actionIndex >= 0:
     data[i].buffer = timeBuffer;
 
   for i in 0..actionIndex:
-    createThread(threads[i], scheduledThread, data[i]);
+    createThread(threads[i], threadFunction, data[i]);
 
   echo "Debug : join treads"
 
